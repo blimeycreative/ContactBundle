@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>new contact request recieved</title>
+  </head>
+  <body>
+    <p>A new contact request has been recieved, details below:</p>
+    <ul>
+      <li>Name: {{ contact.title.name }} {{ contact.name }}</li>
+      <li>Email address: {{ contact.email }}</li>
+      <li>
+        Message:
+        <p>{{ contact.message }}</p>
+      </li>
+    </ul>
+  </body>
+</html>

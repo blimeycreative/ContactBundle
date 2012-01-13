@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+{% stylesheets 
+  "@OxygenContactBundle/Resources/public/css/*" 
+  output="/css/contact.css"
+%}
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+{% endstylesheets %}
+{% endblock %}
+{% block title %}Contact us{% endblock %}
