@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oxygen\ContactBundle\Entity\Title;
 use Oxygen\ContactBundle\Entity\Contact;
 
-class TitleFixtures extends AbstractFixture implements OrderedFixtureInterface {
+class ContactFixtures extends AbstractFixture implements OrderedFixtureInterface {
 
   public function load($manager) {
     $contact = new Contact();
