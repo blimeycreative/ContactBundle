@@ -15,18 +15,18 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 /**
  * @Route("/contact")
  */
-class ClientController extends Controller{
-  
+class ClientController extends Controller {
+
   /**
-   * @Route("/", name="new_contact")
+   * @Route("/{blank_layout}", name="new_contact", defaults={"blank_layout" = false})
    * @Template
    */
-  public function contactAction(Request $request) {
+  public function contactAction($blank_layout) {
     $em = $this->getDoctrine()->getEntityManager();
     $contact = new Contact();
     $form = $this->createForm(new ContactType(), $contact);
-    if ($request->getMethod() == 'POST') {
-      $form->bindRequest($request);
+    if ($this->getRequest()->getMethod() == 'POST') {
+      $form->bindRequest($this->getRequest());
       if ($form->isValid()) {
         $em->persist($contact);
         $em->flush();
@@ -51,9 +51,12 @@ class ClientController extends Controller{
         return new RedirectResponse($this->generateUrl('contact_thankyou'));
       }
     }
-    return array('form' => $form->createView());
+    $params = array('form' => $form->createView(), 'blank_layout' => $blank_layout);
+    if ($blank_layout)
+      return $this->render('OxygenContactBundle:Client:contact-form.html.twig', $params);
+    return $this->render('OxygenContactBundle:Client:contact.html.twig', $params);
   }
-  
+
   /**
    * @Route("/thank-you", name="contact_thankyou")
    * @Template
@@ -61,4 +64,5 @@ class ClientController extends Controller{
   public function thankyouAction() {
     return array();
   }
+
 }

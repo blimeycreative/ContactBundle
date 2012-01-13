@@ -1,26 +1,30 @@
-<h1>All Contact Form Enquiries</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for contact in contacts %}
+{% extends "OxygenContactBundle::layout.html.twig" %}
+{% block body %}
+  <h1>All Contact Form Enquiries</h1>
+  <table>
+    <thead>
       <tr>
-        <td>{{ contact.title.name }} {{ contact.name }}</td>
-        <td>{{ contact.email }}</td>
-        <td>
-          <a href="{{ path('show_contact', {'id':contact.id}) }}">Show</a>
-          <form action="{{ path('delete_contact', {'id':contact.id}) }}" method="post" {{ form_enctype(contact.deleteForm) }}
-            {{ form_widget(contact.deleteForm) }}
-            <input type="submit" value="delete" />
-          </form>
-        </td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
       </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{{ pagination|raw }}
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+        <tr>
+          <td>{{ contact.title.name }} {{ contact.name }}</td>
+          <td>{{ contact.email }}</td>
+          <td>
+            <a href="{{ path('show_contact', {'id':contact.id}) }}">Show</a>
+            <form action="{{ path('delete_contact', {'id':contact.id}) }}" method="post" {{ form_enctype(contact.deleteForm) }}
+              {{ form_widget(contact.deleteForm) }}
+              <input type="submit" value="delete" />
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {{ pagination|raw }}
+  {% render "OxygenContactBundle:Client:contact" with {'blank_layout':true} %}
+{% endblock %}

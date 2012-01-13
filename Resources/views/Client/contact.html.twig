@@ -1,14 +1,4 @@
-{% form_theme form 'OxygenContactBundle:Theme:form.html.twig' %}
-<form action="{{ path('new_contact') }}" method="post" {{ form_enctype(form) }}>
-  <p>Please note, all fields marked with a <span class="required">*</span> are required</p>
-  <div id="contact">
-
-      {{ form_row(form.title) }}     
-      {{ form_row(form.name) }}      
-      {{ form_row(form.email) }}     
-      {{ form_row(form.message) }}     
-
-      {{ form_rest(form) }}
-    <input type="submit" value="send" class="contact-send" />
-  </div>
-</form>
+{% extends "OxygenContactBundle::layout.html.twig" %}
+{% block body %}
+  {% include 'OxygenContactBundle:Client:contact-form.html.twig' with {'form':form,'blank_layout':blank_layout} %}
+{% endblock %}
