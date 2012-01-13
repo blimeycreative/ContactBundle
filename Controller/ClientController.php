@@ -15,7 +15,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 /**
  * @Route("/contact")
  */
-class FrontendController extends Controller{
+class ClientController extends Controller{
   
   /**
    * @Route("/", name="new_contact")
