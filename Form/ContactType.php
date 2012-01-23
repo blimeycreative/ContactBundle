@@ -11,8 +11,10 @@ class ContactType extends AbstractType {
     $builder->add('title', 'entity', array(
         'class' => 'OxygenContactBundle:Title'
     ));
-    $builder->add('name', 'text');
+    $builder->add('name', 'text');  
     $builder->add('email', 'email');
+    $builder->add('telephone', 'text');
+    $builder->add('company', 'text');
     $builder->add('message', 'textarea');
   }
 

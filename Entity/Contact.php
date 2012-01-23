@@ -36,6 +36,20 @@ class Contact {
    * @ORM\Column(name="email", type="string", length=255)
    */
   private $email;
+  /**
+   * @var string $telephone
+   *
+   * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
+   */
+  private $telephone;
+  
+  /**
+   * @var string $company
+   *
+   * @ORM\Column(name="company", type="string", length=255, nullable=true)
+   */
+  private $company;
+  
 
   /**
    * @var text $message
@@ -46,7 +60,7 @@ class Contact {
 
   /**
    * @ORM\ManyToOne(targetEntity="Title", inversedBy="contacts")
-   * @ORM\JoinColumn(name="title_id", referencedColumnName="id")
+   * @ORM\JoinColumn(name="title_id", referencedColumnName="id", onDelete="SET NULL", nullable=true)
    * @Assert\Type(type="Oxygen\ContactBundle\Entity\Title")
    */
   protected $title;
@@ -207,4 +221,44 @@ class Contact {
     $this->delete_form = $form;
   }
 
+
+    /**
+     * Set telephone
+     *
+     * @param string $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return string 
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set company
+     *
+     * @param string $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
 }

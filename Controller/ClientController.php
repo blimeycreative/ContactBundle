@@ -32,7 +32,7 @@ class ClientController extends Controller {
         $em->flush();
         $message = \Swift_Message::newInstance()
                 ->setSubject('Contact form')
-                ->setFrom(Useful::$email)
+                ->setFrom($this->container->getParameter('contact.from.email'))
                 ->setTo($contact->getEmail())
                 ->setBody($this->renderView('OxygenContactBundle:Email:user.html.twig', array(
                     'name' => $contact->getName())
@@ -40,8 +40,8 @@ class ClientController extends Controller {
         $this->get('mailer')->send($message);
         $message = \Swift_Message::newInstance()
                 ->setSubject('Contact form')
-                ->setFrom(Useful::$site_email)
-                ->setTo(Useful::$email)
+                ->setFrom($this->container->getParameter('contact.from.email'))
+                ->setTo($this->container->getParameter('contact.to.email'))
                 ->setBody($this->renderView('OxygenContactBundle:Email:admin.html.twig', array(
                     'contact' => $contact)
                 ), 'text/html');

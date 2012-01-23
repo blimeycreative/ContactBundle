@@ -36,6 +36,20 @@ class Contact {
    * @ORM\Column(name="email", type="string", length=255)
    */
   private $email;
+  /**
+   * @var string $telephone
+   *
+   * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
+   */
+  private $telephone;
+  
+  /**
+   * @var string $company
+   *
+   * @ORM\Column(name="company", type="string", length=255, nullable=true)
+   */
+  private $company;
+  
 
   /**
    * @var text $message
@@ -46,7 +60,7 @@ class Contact {
 
   /**
    * @ORM\ManyToOne(targetEntity="Title", inversedBy="contacts")
-   * @ORM\JoinColumn(name="title_id", referencedColumnName="id")
+   * @ORM\JoinColumn(name="title_id", referencedColumnName="id", onDelete="SET NULL", nullable=true)
    * @Assert\Type(type="Oxygen\ContactBundle\Entity\Title")
    */
   protected $title;
@@ -64,6 +78,8 @@ class Contact {
    * @ORM\Column(name="updated", type="datetime")
    */
   private $updated;
+  
+  private $delete_form;
 
   /**
    * Get id
@@ -195,6 +211,14 @@ class Contact {
    */
   public function getUpdated() {
     return $this->updated;
+  }
+  
+  public function getDeleteForm(){
+    return $this->delete_form;
+  }
+  
+  public function setDeleteForm($form){
+    $this->delete_form = $form;
   }
 
 }

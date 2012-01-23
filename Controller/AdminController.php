@@ -59,7 +59,7 @@ class AdminController extends Controller {
             ->getRepository('OxygenContactBundle:Contact')
             ->createQueryBuilder('c')
             ->leftJoin('c.title', 't');
-    $pager = $this->get('oxygen_pagination.factory')
+    $pager = $this->get('oxygen.utility.pagination.factory')
             ->paginate($contact_query, 2, 'c')
             ->getPagination();
     $contacts = $pager->result->getResult();
