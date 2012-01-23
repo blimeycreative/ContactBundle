@@ -3,7 +3,7 @@
   <h1>Contact information</h1>
   <a href="{{ path('show_contacts') }}">Back to contacts</a>
   <ul>
-    <li>Name: {{ contact.title.name }} {{ contact.name }}</li>
+    <li>Name: {% if contact.title %}{{ contact.title.name }}{% endif %} {{ contact.name }}</li>
     <li>Email: <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
     <li>Telephone: {{ contact.telephone }}</li>
     <li>Company: {{ contact.company }}</li>

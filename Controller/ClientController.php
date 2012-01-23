@@ -24,7 +24,7 @@ class ClientController extends Controller {
   public function contactAction($blank_layout) {
     $em = $this->getDoctrine()->getEntityManager();
     $contact = new Contact();
-    $form = $this->createForm(new ContactType(), $contact);
+    $form = $this->createForm(new ContactType($this->container), $contact);
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {

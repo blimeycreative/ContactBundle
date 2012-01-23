@@ -6,7 +6,7 @@
   <body>
     <p>A new contact request has been recieved, details below:</p>
     <ul>
-      <li>Name: {{ contact.title.name }} {{ contact.name }}</li>
+      <li>Name: {% if contact.title %}{{ contact.title.name }}{% endif %}{{ contact.name }}</li>
       <li>Email address: {{ contact.email }}</li>
       <li>
         Message:

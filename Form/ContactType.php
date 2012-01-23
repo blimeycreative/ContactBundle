@@ -7,15 +7,29 @@ use Symfony\Component\Form\FormBuilder;
 
 class ContactType extends AbstractType {
 
+  private $fields = array(
+      'title' => array(
+          'entity',
+          array(
+              'class' => 'OxygenContactBundle:Title'
+          )
+      ),
+      'name' => array('text', array()),
+      'email' => array('email', array()),
+      'telephone' => array('text', array()),
+      'company' => array('text', array()),
+      'message' => array('textarea', array()),
+  );
+
+  public function __construct($container) {
+    foreach ($this->fields as $field_name => $data)
+      if (!in_array($field_name, $container->getParameter('contact.form.fields')))
+        unset($this->fields[$field_name]);
+  }
+
   public function buildForm(FormBuilder $builder, array $options) {
-    $builder->add('title', 'entity', array(
-        'class' => 'OxygenContactBundle:Title'
-    ));
-    $builder->add('name', 'text');  
-    $builder->add('email', 'email');
-    $builder->add('telephone', 'text');
-    $builder->add('company', 'text');
-    $builder->add('message', 'textarea');
+    foreach($this->fields as $field_name => $data)
+      $builder->add ($field_name, $data[0], $data[1]);
   }
 
   public function getName() {

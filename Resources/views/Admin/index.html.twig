@@ -12,7 +12,7 @@
     <tbody>
       {% for contact in contacts %}
         <tr>
-          <td>{{ contact.title.name }} {{ contact.name }}</td>
+          <td>{% if contact.title %}{{ contact.title.name }}{% endif %}{{ contact.name }}</td>
           <td>{{ contact.email }}</td>
           <td>
             <a href="{{ path('show_contact', {'id':contact.id}) }}">Show</a>
