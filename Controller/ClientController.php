@@ -18,6 +18,14 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class ClientController extends Controller {
 
   /**
+   * @Route("/thank-you", name="contact_thankyou")
+   * @Template
+   */
+  public function thankyouAction() {
+    return array();
+  }
+  
+  /**
    * @Route("/{blank_layout}", name="new_contact", defaults={"blank_layout" = false})
    * @Template
    */
@@ -57,12 +65,6 @@ class ClientController extends Controller {
     return $this->render('OxygenContactBundle:Client:contact.html.twig', $params);
   }
 
-  /**
-   * @Route("/thank-you", name="contact_thankyou")
-   * @Template
-   */
-  public function thankyouAction() {
-    return array();
-  }
+  
 
 }
