@@ -5,10 +5,11 @@ namespace Oxygen\ContactBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oxygen\ContactBundle\Entity\Title;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class TitleFixtures extends AbstractFixture implements OrderedFixtureInterface {
 
-  public function load($manager) {
+  public function load(ObjectManager $manager) {
     $title1 = new Title();
     $title1->setName('Mr');
     $manager->persist($title1);

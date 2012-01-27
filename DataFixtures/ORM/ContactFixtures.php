@@ -6,10 +6,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oxygen\ContactBundle\Entity\Title;
 use Oxygen\ContactBundle\Entity\Contact;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class ContactFixtures extends AbstractFixture implements OrderedFixtureInterface {
 
-  public function load($manager) {
+  public function load(ObjectManager $manager) {
     $contact = new Contact();
     $contact->setTitle($manager->merge($this->getReference('Mr')));
     $contact->setName('Test McTester');
