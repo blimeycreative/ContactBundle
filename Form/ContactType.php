@@ -16,8 +16,8 @@ class ContactType extends AbstractType {
       ),
       'name' => array('text', array()),
       'email' => array('email', array()),
-      'telephone' => array('text', array()),
-      'company' => array('text', array()),
+      'telephone' => array('text', array('required'=>false)),
+      'company' => array('text', array('required'=>false)),
       'message' => array('textarea', array()),
   );
 
