@@ -32,7 +32,8 @@ class ClientController extends Controller {
   public function contactAction($blank_layout) {
     $em = $this->getDoctrine()->getEntityManager();
     $contact = new Contact();
-    $form = $this->createForm(new ContactType($this->container), $contact);
+    $class = $this->container->getParameter('oxygen.contact.contact.type');
+    $form = $this->createForm(new $class($this->container), $contact);
     if ($this->getRequest()->getMethod() == 'POST') {
       $form->bindRequest($this->getRequest());
       if ($form->isValid()) {

@@ -1,4 +1,0 @@
-parameters:
-  contact.from.email: "test@test.com"
-  contact.to.email: "test@test.com"
-  contact.form.fields: [title,name,email,telephone,company,message]

@@ -55,19 +55,21 @@ class AdminController extends Controller {
    * @Template
    */
   public function indexAction(Request $request) {
-    $contact_query = $this->getDoctrine()
+    $query = $this->getDoctrine()
             ->getRepository('OxygenContactBundle:Contact')
             ->createQueryBuilder('c')
             ->leftJoin('c.title', 't');
-    $pager = $this->get('oxygen.utility.pagination.factory')
-            ->paginate($contact_query, 2, 'c')
-            ->getPagination();
-    $contacts = $pager->result->getResult();
+    if ($this->container->has('oxygen_paginate'))
+      $query = $this->get('oxygen_paginate')
+              ->paginate($query, 2, 'c')
+              ->getResults('contact');
+    else
+      $query = $query->getQuery();
+    $contacts = $query->getResult();
     foreach ($contacts as $contact)
       $contact->setDeleteForm($this->createDeleteForm($contact->getId())->createView());
     return array(
         'contacts' => $contacts,
-        'pagination' => $pager->template
     );
   }
 
