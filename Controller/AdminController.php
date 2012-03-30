@@ -59,12 +59,7 @@ class AdminController extends Controller {
             ->getRepository('OxygenContactBundle:Contact')
             ->createQueryBuilder('c')
             ->leftJoin('c.title', 't');
-    if ($this->container->has('oxygen_paginate'))
-      $query = $this->get('oxygen_paginate')
-              ->paginate($query, 2, 'c')
-              ->getResults('contact');
-    else
-      $query = $query->getQuery();
+    $query = $query->getQuery();
     $contacts = $query->getResult();
     foreach ($contacts as $contact)
       $contact->setDeleteForm($this->createDeleteForm($contact->getId())->createView());
